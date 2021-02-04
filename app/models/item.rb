@@ -18,7 +18,7 @@ class Item < ApplicationRecord
     validates :postage_id, numericality: { other_than: 1 }
     validates :area_id, numericality: { other_than: 1 }
     validates :days_to_ship_id, numericality: { other_than: 1 }
-    validates :price, format: {with: /\A[0-9]+\z/}, numericality: { only_integer: true, greater_than: 300, less_than: 10000000 }
+    validates :price, format: {with: /\A[0-9]+\z/}, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than: 10000000 }
     validates :image
   end
 end
