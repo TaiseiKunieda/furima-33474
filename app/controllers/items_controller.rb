@@ -26,6 +26,16 @@ class ItemsController < ApplicationController
     unless @item.user_id == current_user.id
       redirect_to root_path
     end
+
+    if user_signed_in?
+      if @item.purchase != nil
+         redirect_to root_path
+      end
+    else
+      if @item.purchase != nil
+        redirect_to :new
+      end
+    end
   end
 
   def update
