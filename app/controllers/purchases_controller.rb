@@ -1,17 +1,11 @@
 class PurchasesController < ApplicationController
   before_action :set_purchase, only: [:index, :create]
-  before_action :authenticate_user!, only: [:index]
+  before_action :authenticate_user!, only: [:index, :create]
 
   def index
     @purchase = Form.new
-    if @item.user_id == current_user.id
+    if @item.user_id == current_user.id || @item.purchase != nil
       redirect_to root_path
-    end
-
-    if user_signed_in?
-      if @item.purchase != nil
-        redirect_to root_path
-      end
     end
   end
 

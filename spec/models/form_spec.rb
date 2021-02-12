@@ -63,19 +63,25 @@ RSpec.describe Form, type: :model do
         expect(@form.errors.full_messages).to include("Phone number is invalid")
       end
 
-      it "tokenが空では登録できないこと" do
+      it "電話番号が英数混合では購入できない" do
+        @form.phone_number = "090abcdefghi"
+        @form.valid?
+        expect(@form.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it "tokenが空では購入できないこと" do
         @form.token = nil
         @form.valid?
         expect(@form.errors.full_messages).to include("Token can't be blank")
       end
 
-      it "user_idが空では登録できないこと" do
+      it "user_idが空では購入できないこと" do
         @form.user_id = ""
         @form.valid?
         expect(@form.errors.full_messages).to include("User can't be blank")
       end
 
-      it "item_idが空では登録できないこと" do
+      it "item_idが空では購入できないこと" do
         @form.item_id = ""
         @form.valid?
         expect(@form.errors.full_messages).to include("Item can't be blank")

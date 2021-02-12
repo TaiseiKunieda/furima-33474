@@ -9,7 +9,7 @@ class Form
     validates :area_id, numericality: { other_than: 1 }
     validates :municipalities
     validates :address
-    validates :phone_number, format: {with: /\A\d{11}\z/}
+    validates :phone_number, numericality: { only_integer: true }, format: {with: /\A\d{11}\z/}
     validates :token
   end
 
